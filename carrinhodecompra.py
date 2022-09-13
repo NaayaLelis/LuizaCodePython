@@ -6,6 +6,9 @@
 # price_produto = float (input("Insira o preço do produto: "))
 # quantity_product =int (input("Insira a quantidade de produto: "))
 
+from tkinter import N
+
+
 produtos = (
     {'id':1 , 'Nome' : 'Perfume', 'preco' :115.00 },
     {'id':2 , 'Nome' : 'Creme de pentear','preco' :30.00 },
@@ -26,18 +29,19 @@ def main_menu():
      ''')
     
 main_menu()
-    
-opcao = input ("Digite a opção desejada : ")
-    
+
 def show_all_products():
-    for p in produtos:
+  for p in produtos:
         print(
-            produtos
-        )    
-    if opcao == '1' :
-        print(produtos )             
-    show_all_products()    
-  
+            'Id: {0} - Nome: {1} - Preço:{2}\n'.format(p['id'],p['nome'],p['preco']))
+
+opcao = input ("Digite a opção desejada : ")    
+if opcao == '1' :
+       show_all_products()  
+       print(id =int(input("Digite o id do produto desejado: ")) ) 
+               
+       
+
    
 
 
