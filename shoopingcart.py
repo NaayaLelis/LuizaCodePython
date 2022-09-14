@@ -11,7 +11,6 @@ print(welcomeUser)
 print("#"*lenWelcomeUser)
 ##Market Place##
 
-print("\n*****Marketplace*****")
 products= (
     {'id':1,'nome':'Creme corporal','preco':35.00},
     {'id':2,'nome':'Creme de cabelo','preco':29.38},
@@ -22,93 +21,60 @@ products= (
 
 cart =[]
 
-def marketplace():
+def showProducts():
     for p in products:
         print(
-            ('Id: {0} - Nome: {1} - Preço: {2}\n'.format(p['id'],p['nome'],p['preco']))
-        )
-         
-marketplace()
+            'Id: {0} - Nome: {1} - Preço: {2}\n'.format(p['id'], p['nome'], p['preco']))
 
-toShop= 'sim'
-
-toShop=input("Gostaria de prosseguir para realizar uma compra?(sim/não)")
-
-if toShop == 'não':
-    print('Esperamos que retorne em breve!Até a próxima.')  
-
+def showOptions():
+    print('\n\n')
+    print('1 - Adicionar Item')
+    print('2 - Remover Item')
+    print('3 - Exibir itens e o valor total')
+    print('4 - Limpar Carrinho de compras')
+    print('5 - Sair')
     
-if toShop == 'sim':
-       
- def main_menu():
-  print(''''
-    1. Adicionar produto ao carrinho
-    2.Remover produto do carrinho
-    3. Ver todos os itens do carrinho e o valor total
-    4.Buscar item pelo id
-    5.Sair
-     ''') 
-main_menu()
 
+option = '1'
 
-## Options##
-
-option ='1'
+print('***Marketplace*** \n')
 
 def productName(id):
- for p in products:
-  if p['id'] == id:
-     return p['nome']
+    for p in products:
+        if p['id'] == id:
+            return p['nome']
 
-while option !='5':
-    main_menu()
-    option = int(input('Digite uma opção:'))
-      
-if option == 1:
-   def marketplace():
-      for p in products:
-          print(
-            ('Id: {0} - Nome: {1} - Preço: {2}\n'.format(p['id'],p['nome'],p['preco']))
-        )       
-marketplace()
-id = int(input('Digite o identificador do produto: '))
-quantidade = int(input('Digite a quantidade: '))
-cart.append({'id': id, 'quantidade' : quantidade})   
+showProducts()
+while option != '5':
+    showOptions()
+    option = input('Digite a opção: ')
 
-if  option == '2':
-    id = int(input('Digite o id do produto que deseja remover: '))
-    temporarycart = []
-    for item in cart:
-        if item ['id'] != id:
-            temporarycart.append(item)
-            
-if option =='3':
-    for item in cart:
+    if option == '1':
+        showProducts()
+        id = int(input('Digite o identificador do produto: '))
+        quantidade = int(input('Digite quantidade: '))
+        cart.append({'id': id, 'quantidade': quantidade})
+
+    if option == '2':
+        id = int(input('Digite o identificador do produto: '))
+        temp = []
+        for item in cart:
+            if item['id'] != id:
+                temp.append(item)
+
+    if option == '3':
+        print('\n\n')
         somatorio = 0
-        for p in products:
-            if products['id'] == item['id']:
-               somatorio= somatorio + (products['preco'] * item['quantidade'])
-            break
-           
-        print('Nome : {0} - Quantidade {1}'.format(item['id'], item['quantidade']))
+        for item in cart:
+            for p in products:
+                if p['id'] == item['id']:
+                    somatorio = somatorio + \
+                        (p['preco'] * item['quantidade'])
+                    break
+
+            print(
+                'Nome: {0} - Quantidade: {1}'.format(productName(item['id']), item['quantidade']))
         print('Preço total: {0}'.format(somatorio))
-        
-        if option == '4':
-            input=('Tem certeza que deseja esvaziar seu carrinho?')
-            if input =='sim':
-                
-             cart=[]
-            else:
-                main_menu()
-            
-    
 
-
- 
-
-
- 
- 
-          
-
-
+    if option == '4':
+        cart = []
