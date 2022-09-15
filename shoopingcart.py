@@ -56,11 +56,13 @@ while option != '5':
         cart.append({'id': id, 'quantidade': quantidade})
 
     if option == '2':
-        id = int(input('Digite o identificador do produto: '))
-        temp = []
+        id = int(input('Digite o id do produto que deseja remover: '))
+        tempcart = []
+        cart = [item]
         for item in cart:
             if item['id'] != id:
-                temp.append(item)
+                tempcart.append(item)
+        
 
     if option == '3':
         print('\n\n')
